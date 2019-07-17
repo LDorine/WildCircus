@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bienvenue au Wild Circus !{% endblock %}
+
+{% block body %}
+    <div class="card-group">
+        <div class="card" style="width: 18rem;">
+            <h5 class="card-title">L'histoire</h5>
+            <img src="{{ asset('build/images/Footit_and_Chocolat.jpg') }}" class="card-img-top" alt="Histoire_wildcircus">
+            <div class="card-body">
+                <a href="#" class="btn btn-primary">Découvrir</a>
+            </div>
+        </div>
+        <div class="card" style="width: 18rem;">
+            <h5 class="card-title">Les artistes</h5>
+            <img src="{{ asset('build/images/artistes.jpg') }}" class="card-img-top" alt="Artiste_wildcircus">
+            <div class="card-body">
+                <a href="#" class="btn btn-primary">Découvrir</a>
+            </div>
+        </div>
+        <div class="card" style="width: 18rem;">
+            <h5 class="card-title">La tournée</h5>
+            <img src="{{ asset('build/images/tourner.jpg') }}" class="card-img-top" alt="tournée_wildcircus">
+            <div class="card-body">
+                <a href="#" class="btn btn-primary">Découvrir</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

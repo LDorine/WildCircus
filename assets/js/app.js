@@ -7,6 +7,12 @@
 
 // any CSS you require will output into a single scss file (app.scss in this case)
 require('../scss/app.scss');
+require('bootstrap');
 
 // Need jQuery? Install it with "yarn add jquery", then uncomment to require it.
 // const $ = require('jquery');
+
+require('../images/logo_WildCircus.png');
+require('../images/artistes.jpg');
+require('../images/Footit_and_Chocolat.jpg');
+require('../images/tourner.jpg');
