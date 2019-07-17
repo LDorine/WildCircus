@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Billet{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('places') }}
+{% endblock %}
+
+{% block body %}
+    <h1>Create new Billet</h1>
+
+    {{ form_start(form) }}
+    {{ form_row(form.nom) }}
+    {{ form_row(form.email) }}
+    {{ form_row(form.representations) }}
+    <ol class="places" data-prototype="{{ form_widget(form.places.vars.prototype)|e('html_attr') }}">
+        {% for place in form.places %}
+            <hr>
+            <li>
+                {{ form_row(place.emplacement, {'label': 'Choisie la catégorie'}) }}
+                {{ form_row(place.type, {'label': 'Choisie le tarif'}) }}
+                <button class="remove-existing-place btn btnRemovePlace">supprimer cette place</button>
+            </li>
+        {% endfor %}
+    </ol>
+    <button class="btn">{{ button_label|default('Réservez') }}</button>
+    {{ form_end(form) }}
+
+    <a href="{{ path('billet_index') }}">Retour à la liste</a>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent () }}
+    {{ encore_entry_script_tags('places') }}
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les représentations{% endblock %}
+
+{% block body %}
+    <p>voici les prochaines ville où notre joyeuse troupe s'arrêtera ! </p>
+    <div class="row">
+        <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+            <div class="card" style="width: 20rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Groupe</h5>
+                    <p class="card-text justify-content-center">
+                        Que vous soyez une école, un CE d'entreprise, une maison de retraite ou bien d'autre chose encore vous pouvez faire une réservation.
+                        Les spectacles de groupe s'effectue tous les jours à 10h.
+                    </p>
+                    <a href="#" class="btn">C'est ici !</a>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">
+            <table class="table">
+                <tbody>
+                <tr scope="col">
+                    <td scope="row">Lille</td>
+                    <td>Du 6 au 10 août 2019</td>
+                    <td><a class="btn btn-outline-danger" href="{{ path('billet_new', {'ville' : 'Lille'}) }}">Réservez vos places</a></td>
+                </tr>
+                <tr scope="col">
+                    <td scope="row">Arras</td>
+                    <td> Du 14 au 16 août 2019</td>
+                    <td><a class="btn btn-outline-danger" href="{{ path('billet_new', {'ville' : 'Arras'}) }}">Réservez vos places</a></td>
+                </tr>
+                <tr scope="col">
+                    <td scope="row">Dunkerque</td>
+                    <td>Du 22 au 25 août 2019</td>
+                    <td><a class="btn btn-outline-danger" href="{{ path('billet_new', {'ville' : 'Dunkerque'}) }}">Réservez vos places</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

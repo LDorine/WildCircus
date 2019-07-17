@@ -10,7 +10,7 @@ require('../scss/app.scss');
 require('bootstrap');
 
 // Need jQuery? Install it with "yarn add jquery", then uncomment to require it.
-// const $ = require('jquery');
+const $ = require('jquery');
 
 require('../images/logo_WildCircus.png');
 require('../images/artistes.jpg');

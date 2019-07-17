@@ -1,0 +1,70 @@
+.places {
+  list-style: none;
+  counter-reset: place;
+  .custom-file{
+    position:relative;
+    top:-20px;
+  }
+  li {
+    div {
+      margin-top:30px;
+      .form-group{
+        margin-top:-10px;
+      }
+    }
+  }
+}
+
+.places li {
+  counter-increment: place;
+}
+
+.places li::before {
+  content: counter(place) ") ";
+  color: #e4606d;;
+  font-size:20px;
+  position:relative;
+  top:10px;
+  left:-25px;
+}
+
+.btnRemovePlace{
+  margin-bottom:10px;
+  background-color:#e4606d;
+  color:white;
+  font-size:20px;
+}
+
+.btnRemovePlace:hover {
+  background-color: white;
+  color:#e4606d;
+  transition:0.4s ease;
+}
+
+.btnRemovePlace:focus, .btnRemovePlace:active {
+  background:#e4606d !important;
+  outline: white !important;
+  box-shadow: none !important;
+}
+
+.btnAddPlace{
+  position:relative;
+  left:-40px;
+  margin-top:10px;
+  margin-bottom:20px;
+  background-color:#e4606d;
+  color:white;
+  font-size:20px;
+}
+
+.btnAddPlace:hover {
+  background-color:#e4606d!important;
+  color:white;
+  transition:0.4s ease;
+}
+
+.btnAddPlace:focus, .btnAddPlace:active {
+  background:white !important;
+  outline: white !important;
+  box-shadow: none !important;
+}
