@@ -13,3 +13,6 @@ require('bootstrap');
 // const $ = require('jquery');
 
 require('../images/logo_WildCircus.png');
+require('../images/artistes.jpg');
+require('../images/Footit_and_Chocolat.jpg');
+require('../images/tourner.jpg');
