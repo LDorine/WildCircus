@@ -29,19 +29,19 @@ class Billet
     private $email;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Place", mappedBy="place", orphanRemoval=true)
-     */
-    private $places;
-
-    /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Representation", inversedBy="billets")
      */
     private $representations;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Place", inversedBy="billets")
+     */
+    private $places;
+
     public function __construct()
     {
-        $this->places = new ArrayCollection();
         $this->representations = new ArrayCollection();
+        $this->places = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -74,37 +74,6 @@ class Billet
     }
 
     /**
-     * @return Collection|place[]
-     */
-    public function getPlaces(): Collection
-    {
-        return $this->places;
-    }
-
-    public function addPlace(place $place): self
-    {
-        if (!$this->places->contains($place)) {
-            $this->places[] = $place;
-            $place->setPlace($this);
-        }
-
-        return $this;
-    }
-
-    public function removePlace(place $place): self
-    {
-        if ($this->places->contains($place)) {
-            $this->places->removeElement($place);
-            // set the owning side to null (unless already changed)
-            if ($place->getPlace() === $this) {
-                $place->setPlace(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
      * @return Collection|Representation[]
      */
     public function getRepresentations(): Collection
@@ -125,6 +94,32 @@ class Billet
     {
         if ($this->representations->contains($representation)) {
             $this->representations->removeElement($representation);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Place[]
+     */
+    public function getPlaces(): Collection
+    {
+        return $this->places;
+    }
+
+    public function addPlace(Place $place): self
+    {
+        if (!$this->places->contains($place)) {
+            $this->places[] = $place;
+        }
+
+        return $this;
+    }
+
+    public function removePlace(Place $place): self
+    {
+        if ($this->places->contains($place)) {
+            $this->places->removeElement($place);
         }
 
         return $this;

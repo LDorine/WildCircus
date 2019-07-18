@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -32,10 +34,14 @@ class Place
     private $prix;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Billet", inversedBy="places")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToMany(targetEntity="App\Entity\Billet", mappedBy="places")
      */
-    private $place;
+    private $billets;
+
+    public function __construct()
+    {
+        $this->billets = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -78,14 +84,30 @@ class Place
         return $this;
     }
 
-    public function getPlace(): ?Billet
+    /**
+     * @return Collection|Billet[]
+     */
+    public function getBillets(): Collection
     {
-        return $this->place;
+        return $this->billets;
     }
 
-    public function setPlace(?Billet $place): self
+    public function addBillet(Billet $billet): self
     {
-        $this->place = $place;
+        if (!$this->billets->contains($billet)) {
+            $this->billets[] = $billet;
+            $billet->addPlace($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBillet(Billet $billet): self
+    {
+        if ($this->billets->contains($billet)) {
+            $this->billets->removeElement($billet);
+            $billet->removePlace($this);
+        }
 
         return $this;
     }
