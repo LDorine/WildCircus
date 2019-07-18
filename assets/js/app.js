@@ -11,6 +11,7 @@ require('bootstrap');
 
 // Need jQuery? Install it with "yarn add jquery", then uncomment to require it.
 const $ = require('jquery');
+global.$ = global.jQuery = $;
 
 require('../images/logo_WildCircus.png');
 require('../images/artistes.jpg');

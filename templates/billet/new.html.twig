@@ -18,8 +18,7 @@
         {% for place in form.places %}
             <hr>
             <li>
-                {{ form_row(place.emplacement, {'label': 'Choisie la catégorie'}) }}
-                {{ form_row(place.type, {'label': 'Choisie le tarif'}) }}
+                {{ form_row(place.emplacement) }}
                 <button class="remove-existing-place btn btnRemovePlace">supprimer cette place</button>
             </li>
         {% endfor %}
@@ -33,4 +32,32 @@
 {% block javascripts %}
     {{ parent () }}
     {{ encore_entry_script_tags('places') }}
+    <script>
+    $(document).ready(function() {
+        let path = "{{ path('price') }}";
+        $.getJSON(path, function (data) {
+            data = $.parseJSON(data);
+            $.each(data, function (key,val) {
+                let billet = {
+                    price : val.prix,
+                    emplacement : val.emplacement
+                };
+               console.log(billet);
+                return billet;
+            });
+
+            $('.emplacement').click(function () {
+                if( $('.emplacement').val() == 'Loge Adulte') {
+                    console.log(billet.emplacement);
+                    if (billet.emplacement == 'Loge Adulte') {
+                        $('.emplacement').append($('p'));
+                        $('p').text(billet.prix);
+                    }
+                }
+            })
+
+        });
+    });
+    </script>
+    {# encore_entry_script_tags('price') #}
 {% endblock %}

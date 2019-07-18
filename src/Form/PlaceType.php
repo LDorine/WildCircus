@@ -19,6 +19,9 @@ class PlaceType extends AbstractType
                 'class' => Place::class,
                 'choice_label' => 'emplacement',
                 'label' => 'Choissiez une place',
+                'attr' => [
+                    'class' => 'emplacement'
+                ]
             ]);
     }
 

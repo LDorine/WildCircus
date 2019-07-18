@@ -33,7 +33,7 @@ class BilletType extends AbstractType
                 'label' => 'Choissiez une représentation',
             ])
             ->add('places', CollectionType::class, [
-                'label' => 'Selectionner vos places :',
+                'label' => false,
                 'entry_type' => PlaceType::class,
                 'required' => false,
                 'entry_options' => ['label' => false],

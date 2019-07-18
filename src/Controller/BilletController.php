@@ -4,20 +4,22 @@ namespace App\Controller;
 
 use App\Entity\Billet;
 use App\Form\BilletType;
-use App\Repository\BilletRepository;
-use App\Repository\RepresentationRepository;
+use App\Repository\PlaceRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\Encoder\JsonEncode;
+use Symfony\Component\Serializer\Encoder\XmlEncoder;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
 
-/**
- * @Route("/billet")
- */
+
 class BilletController extends AbstractController
 {
     /**
-     * @Route("/new", name="billet_new", methods={"GET","POST"})
+     * @Route("/billet/new", name="billet_new", methods={"GET","POST"})
      * @param Request $request
      * @return Response
      */
@@ -43,7 +45,7 @@ class BilletController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="billet_show", methods={"GET"})
+     * @Route("/billet/{id}", name="billet_show", methods={"GET"})
      */
     public function show(Billet $billet): Response
     {
@@ -53,7 +55,7 @@ class BilletController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="billet_edit", methods={"GET","POST"})
+     * @Route("/billet/{id}/edit", name="billet_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Billet $billet): Response
     {
@@ -73,16 +75,16 @@ class BilletController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="billet_delete", methods={"DELETE"})
+     * @Route("/price", name="price")
      */
-    public function delete(Request $request, Billet $billet): Response
-    {
-        if ($this->isCsrfTokenValid('delete'.$billet->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($billet);
-            $entityManager->flush();
-        }
+    public function price(PlaceRepository $pr) {
+        $price = $pr->findAll();
 
-        return $this->redirectToRoute('billet_index');
+        $encoders = [new XmlEncoder(), new JsonEncode()];
+        $normalizers = [new ObjectNormalizer()];
+        $serializer = new Serializer($normalizers, $encoders);
+        $jsonContent = $serializer->serialize($price, 'json');
+        $json = new JsonResponse($jsonContent, 200, []);
+        return $json;
     }
 }
