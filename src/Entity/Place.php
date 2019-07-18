@@ -24,11 +24,6 @@ class Place
     private $emplacement;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $type;
-
-    /**
      * @ORM\Column(type="integer")
      */
     private $prix;
@@ -56,18 +51,6 @@ class Place
     public function setEmplacement(string $emplacement): self
     {
         $this->emplacement = $emplacement;
-
-        return $this;
-    }
-
-    public function getType(): ?string
-    {
-        return $this->type;
-    }
-
-    public function setType(string $type): self
-    {
-        $this->type = $type;
 
         return $this;
     }
