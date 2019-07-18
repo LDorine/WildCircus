@@ -17,18 +17,6 @@ use Symfony\Component\Routing\Annotation\Route;
 class BilletController extends AbstractController
 {
     /**
-     * @Route("/", name="billet_index", methods={"GET"})
-     * @param BilletRepository $billetRepository
-     * @return Response
-     */
-    public function index(BilletRepository $billetRepository): Response
-    {
-        return $this->render('billet/index.html.twig', [
-            'billets' => $billetRepository->findAll(),
-        ]);
-    }
-
-    /**
      * @Route("/new", name="billet_new", methods={"GET","POST"})
      * @param Request $request
      * @return Response
@@ -45,7 +33,7 @@ class BilletController extends AbstractController
             $entityManager->persist($billet);
             $entityManager->flush();
 
-            return $this->redirectToRoute('billet_index');
+            return $this->redirectToRoute('representation');
         }
 
         return $this->render('billet/new.html.twig', [
