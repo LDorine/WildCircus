@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contactez nous :{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    <h1>Contactez nous !</h1>
+    {{ form_start(form) }}
+        {{ form_row(form.nom) }}
+        {{ form_row(form.mail) }}
+        {{ form_row(form.sujet) }}
+        {{ form_row(form.commentaire) }}
+    <button class="btn">{{ button_label|default('Envoyez') }}</button>
+    {{ form_end(form) }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent () }}
+{% endblock %}
