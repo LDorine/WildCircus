@@ -21,7 +21,7 @@ class ContactType extends AbstractType
                 'label' => 'Entrez votre adresse  :',
             ])
             ->add('sujet', ChoiceType::class, [
-                'choice' => [
+                'choices' => [
                     'Informations' => 'informations',
                     'Questions' => 'questions',
                     'Réservations groupe' => 'groupe',
